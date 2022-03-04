@@ -1,0 +1,11 @@
+@use 'src/styles/vars';
+
+.load-more {
+    margin-left: 43vw;
+    background-color: vars.$colorBgCard;
+    border: solid 1px #454545;
+    border-radius: 1rem;
+    color: vars.$colorFont;
+    font-size: 2rem;
+    padding: 1rem;
+}

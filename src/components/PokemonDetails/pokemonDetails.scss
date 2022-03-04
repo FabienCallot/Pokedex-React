@@ -1,0 +1,10 @@
+@use 'src/styles/vars';
+
+.pokemon-details {
+    display: flex;
+    justify-content: space-between;
+
+    &--progress {
+        width: 66vw;
+    }
+}

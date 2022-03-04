@@ -1,0 +1,27 @@
+@use 'src/styles/vars';
+
+.stats__bar {
+    z-index: 1;
+    content: '';
+    height: 1.6em;
+    width: 100%;
+    background-color: #632b2b;
+    border-radius: 5px;
+    margin: 5px;
+
+
+    -webkit-appearance: none;
+    border-radius: 10px;
+  }
+  
+  ::-webkit-progress-bar {
+     background-color: #632b2b;
+    border-radius: 10px;
+
+  }
+
+  ::-webkit-progress-value {
+    background-color: vars.$colorBgHeader;
+    border-radius: 6px;
+  
+}
