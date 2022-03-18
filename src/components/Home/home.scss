@@ -1,11 +1,30 @@
 @use 'src/styles/vars';
 
 .load-more {
-    margin-left: 43vw;
-    background-color: vars.$colorBgCard;
-    border: solid 1px #454545;
-    border-radius: 1rem;
-    color: vars.$colorFont;
-    font-size: 2rem;
-    padding: 1rem;
+  margin-left: 43vw;
+  background-color: vars.$colorBgCard;
+  border: solid 1px #454545;
+  border-radius: 1rem;
+  color: vars.$colorFont;
+  font-size: 2rem;
+  padding: 1rem;
+}
+
+.pokemon {
+  &-filter {
+    text-align: center;
+  }
+  &-select {
+    margin-left: 1rem;
+    padding: 0.5rem;
+    height: 50px;
+    min-width: 150px;
+    background-color: #c0404058;
+    border: solid 1px #f9d2d3;
+    border-radius: 5px;
+    color: white;
+    font-family: inherit;
+    text-align: center;
+    font-size: 1rem;
+  }
 }
