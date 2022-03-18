@@ -8,7 +8,7 @@ import './home.scss';
 const Home = (props) => {
   const [allPokemons, setAllPokemons] = useState([]);
   const [loadPokemons, setLoadPokemons] = useState(
-    'https://pokeapi.co/api/v2/pokemon?limit=600'
+    'https://pokeapi.co/api/v2/pokemon?limit=42'
   );
   const [sortedById, setSortedById] = useState(false);
   const [sortedByName, setSortedByName] = useState(false);
@@ -25,7 +25,6 @@ const Home = (props) => {
         );
         const data = await response.data;
         setAllPokemons((currentList) => [...currentList, data]);
-        console.log('coucou');
       });
     }
     createPokemonItem(data.results);
@@ -83,6 +82,7 @@ const Home = (props) => {
         <select
           name="by"
           id="pokemon-select"
+          className="pokemon-select"
           onChange={(e) => {
             if (e.target.value === 'id') {
               sortById();
@@ -93,7 +93,7 @@ const Home = (props) => {
             }
           }}
         >
-          <option value="">--Please choose an option--</option>
+          <option value="">Choice</option>
           <option value="id">Id</option>
           <option value="name">Name</option>
           <option value="type">Type</option>
