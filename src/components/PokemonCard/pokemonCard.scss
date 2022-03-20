@@ -4,6 +4,7 @@
   background-color: vars.$colorBgCard;
   min-width: 300px;
   width: 31vw;
+  min-height: 300px;
   height: 35vh;
   margin: 1rem 0;
   padding: 1rem;
@@ -16,19 +17,27 @@
 }
 
 .pokemon-detail {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   width: 100%;
   padding: 1.5rem 1rem 0.5rem 0.5rem;
 
   & h3 {
+    padding-top: 0.5rem;
     font-size: 1.5rem;
     font-weight: bold;
     margin-left: 1.5rem;
     &::first-letter {
       text-transform: uppercase;
     }
+  }
+  &-first {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+    width: 100%;
+  }
+  &-type {
+    padding-top: 2rem;
+    margin: auto;
   }
 }
 

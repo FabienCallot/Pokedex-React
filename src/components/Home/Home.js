@@ -2,17 +2,20 @@
 import axios from 'axios';
 import React from 'react';
 import { useEffect, useState } from 'react';
+import scrollToTop from '../hooks/scrollToTop';
 import PokemonCard from '../PokemonCard/PokemonCard';
 import './home.scss';
 
 const Home = (props) => {
   const [allPokemons, setAllPokemons] = useState([]);
   const [loadPokemons, setLoadPokemons] = useState(
-    'https://pokeapi.co/api/v2/pokemon?limit=42'
+    'https://pokeapi.co/api/v2/pokemon?limit=22'
   );
   const [sortedById, setSortedById] = useState(false);
   const [sortedByName, setSortedByName] = useState(false);
   const [sortedByType, setSortedByType] = useState(false);
+
+  const [showButton, setShowButton] = useState(false);
 
   const getAllPokemons = async () => {
     const response = await axios.get(loadPokemons);
@@ -73,6 +76,13 @@ const Home = (props) => {
 
   useEffect(() => {
     getAllPokemons();
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        setShowButton(true);
+      } else {
+        setShowButton(false);
+      }
+    });
   }, []);
   return (
     <div>
@@ -102,25 +112,31 @@ const Home = (props) => {
       <section className="pokemon-container">
         {allPokemons.map((pokemon, index) => (
           <PokemonCard
-            key={pokemon.id}
+            key={index}
             id={pokemon.id}
             name={pokemon.name}
             image={pokemon.sprites.other.dream_world.front_default}
             type={pokemon.types[0].type.name}
           />
         ))}
+        <button
+          className="button button-load-more"
+          onClick={() => {
+            getAllPokemons();
+            sortedById && sortById();
+            sortedByName && sortByName();
+            sortedByType && sortByType();
+          }}
+        >
+          Load more
+        </button>
       </section>
-      <button
-        className="load-more"
-        onClick={() => {
-          getAllPokemons();
-          sortedById && sortById();
-          sortedByName && sortByName();
-          sortedByType && sortByType();
-        }}
-      >
-        Load more
-      </button>
+
+      {showButton && (
+        <button onClick={scrollToTop} className="button button-to-top">
+          &#8679;
+        </button>
+      )}
     </div>
   );
 };
