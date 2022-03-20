@@ -9,7 +9,7 @@ import './home.scss';
 const Home = (props) => {
   const [allPokemons, setAllPokemons] = useState([]);
   const [loadPokemons, setLoadPokemons] = useState(
-    'https://pokeapi.co/api/v2/pokemon?limit=22'
+    'https://pokeapi.co/api/v2/pokemon?limit=21'
   );
   const [sortedById, setSortedById] = useState(false);
   const [sortedByName, setSortedByName] = useState(false);

@@ -1,10 +1,22 @@
 @use 'src/styles/vars';
 
 .pokemon-details {
-    display: flex;
-    justify-content: space-between;
+  text-align: center;
+  margin-left: auto;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 
-    &--progress {
-        width: 66vw;
+  & img,
+  h2 {
+    margin: 1rem 0;
+  }
+
+  &--progress {
+    width: 100%;
+    padding: 0.5rem;
+    &-stats {
+      margin: 0.5rem 0 0.5rem 0;
     }
+  }
 }
