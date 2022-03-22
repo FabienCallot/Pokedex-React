@@ -4,7 +4,7 @@ import './pokemonCard.scss';
 
 const PokemonCard = ({ id, name, image, type }) => {
   const style = `pokemon-card ${type}`;
-
+// test bug github
   return (
     <Link to={`/pokemon/${name}`} className={style}>
       <img src={image} alt={name} />
