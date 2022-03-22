@@ -1,6 +1,9 @@
 @use 'src/styles/vars';
 
 .pokemon-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   background-color: vars.$colorBgCard;
   min-width: 300px;
   width: 31vw;
@@ -10,9 +13,7 @@
   padding: 1rem;
   border-radius: 0.5rem;
   & img {
-    display: block;
-    width: 70%;
-    height: 25vh;
+    max-width: 90%;
     margin: auto;
   }
 }
@@ -37,7 +38,7 @@
     width: 100%;
   }
   &-type {
-    margin-top: 3rem;
+    margin-top: 2rem;
   }
 }
 
