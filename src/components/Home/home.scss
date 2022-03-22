@@ -20,7 +20,8 @@
 
 .pokemon {
   &-filter {
-    text-align: center;
+    display: flex;
+    justify-content: space-around;
   }
   &-select {
     margin-left: 1rem;
