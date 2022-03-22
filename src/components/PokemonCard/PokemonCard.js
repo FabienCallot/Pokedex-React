@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './pokemonCard.scss';
 
 const PokemonCard = ({ id, name, image, type }) => {
   const style = `pokemon-card ${type}`;
-
   return (
     <Link to={`/pokemon/${name}`} className={style}>
       <img src={image} alt={name} />
@@ -17,6 +17,13 @@ const PokemonCard = ({ id, name, image, type }) => {
       </div>
     </Link>
   );
+};
+
+PokemonCard.propTypes = {
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default React.memo(PokemonCard);

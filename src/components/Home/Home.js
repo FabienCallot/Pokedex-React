@@ -39,9 +39,6 @@ const Home = (props) => {
     allPokemons.sort(function (a, b) {
       return a.id - b.id;
     });
-    setSortedById(true);
-    setSortedByName(false);
-    setSortedByType(false);
   };
 
   const sortByName = () => {
@@ -54,9 +51,6 @@ const Home = (props) => {
       }
       return 0;
     });
-    setSortedByName(true);
-    setSortedById(false);
-    setSortedByType(false);
   };
 
   const sortByType = () => {
@@ -69,6 +63,20 @@ const Home = (props) => {
       }
       return 0;
     });
+  };
+  const handleSortId = () => {
+    setSortedById(true);
+    setSortedByName(false);
+    setSortedByType(false);
+  };
+
+  const handleSortName = () => {
+    setSortedByName(true);
+    setSortedById(false);
+    setSortedByType(false);
+  };
+
+  const handleSortTag = () => {
     setSortedByType(true);
     setSortedById(false);
     setSortedByName(false);
@@ -87,28 +95,19 @@ const Home = (props) => {
   return (
     <div>
       <div className="pokemon-filter">
-        <label htmlFor="pokemon-select">Trier par</label>
-
-        <select
-          name="by"
-          id="pokemon-select"
-          className="pokemon-select"
-          onChange={(e) => {
-            if (e.target.value === 'id') {
-              sortById();
-            } else if (e.target.value === 'name') {
-              sortByName();
-            } else if (e.target.value === 'type') {
-              sortByType();
-            }
-          }}
-        >
-          <option value="">Choice</option>
-          <option value="id">Id</option>
-          <option value="name">Name</option>
-          <option value="type">Type</option>
-        </select>
+        <button className="button" onClick={() => handleSortName()}>
+          trier par nom
+        </button>
+        <button className="button" onClick={() => handleSortId()}>
+          trier par id
+        </button>
+        <button className="button" onClick={() => handleSortTag()}>
+          trier par tag
+        </button>
       </div>
+      {sortedById && sortById()}
+      {sortedByName && sortByName()}
+      {sortedByType && sortByType()}
       <section className="pokemon-container">
         {allPokemons.map((pokemon, index) => (
           <PokemonCard
@@ -123,9 +122,6 @@ const Home = (props) => {
           className="button button-load-more"
           onClick={() => {
             getAllPokemons();
-            sortedById && sortById();
-            sortedByName && sortByName();
-            sortedByType && sortByType();
           }}
         >
           Load more

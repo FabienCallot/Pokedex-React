@@ -22,7 +22,7 @@ const PokemonDetails = () => {
     return null;
   }
 
-  console.log(pokemon);
+  //console.log(pokemon);
 
   return (
     <div className="pokemon-details">
