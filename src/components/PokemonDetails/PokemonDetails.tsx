@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ProgressBar from '../ProgressBar/ProgressBar';
+import getOnePokemon from '../../request/getOnePokemon';
 import './pokemonDetails.scss';
 
 type TPokemon = (number | string)[];
@@ -11,38 +11,18 @@ const PokemonDetails = () => {
   const [pokemon, setPokemon] = useState<TPokemon>();
   const { name } = useParams<Name>();
 
-  const resultPokemon = async (): Promise<void> => {
-    const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
-    const transformedPokemon: TPokemon = [
-      result.data.name,
-      `${result.data.sprites.other.dream_world.front_default}`,
-      result.data.stats[0].stat.name,
-      result.data.stats[0].base_stat,
-      result.data.stats[1].stat.name,
-      result.data.stats[1].base_stat,
-      result.data.stats[2].stat.name,
-      result.data.stats[2].base_stat,
-      result.data.stats[3].stat.name,
-      result.data.stats[3].base_stat,
-      result.data.stats[4].stat.name,
-      result.data.stats[4].base_stat,
-      result.data.stats[5].stat.name,
-      result.data.stats[5].base_stat,
-    ];
-    console.log(result.data);
-
-    setPokemon(transformedPokemon);
-  };
-
   useEffect(() => {
-    resultPokemon();
+    (async function () {
+      const myNewPokemon = await getOnePokemon(name);
+      setPokemon(myNewPokemon);
+    })();
   }, []);
 
   if (!pokemon) {
     return null;
   }
 
-  console.log(pokemon);
+  //console.log(pokemon);
 
   return (
     <div className="pokemon-details">
