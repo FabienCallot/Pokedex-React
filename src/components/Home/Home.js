@@ -16,7 +16,7 @@ const Home = (props) => {
   const [sortedByType, setSortedByType] = useState(false);
 
   const [height, setHeight] = useState(window.innerHeight);
-  const breakpoint = 800;
+  const breakpoint = 1000;
 
   //console.log(allPokemons);
 
