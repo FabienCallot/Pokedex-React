@@ -5,15 +5,15 @@ import Home from '../Home/Home';
 import PokemonDetails from '../PokemonDetails/PokemonDetails';
 
 function App() {
-    return (
-        <div className="app">
-            <Header />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/pokemon/:name" element={<PokemonDetails />} />
-            </Routes>
-        </div>
-    );
+  return (
+    <div className="app">
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/pokemon/:name" element={<PokemonDetails />} />
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
