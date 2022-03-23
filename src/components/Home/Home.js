@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import axios from 'axios';
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { getAllPokemons } from '../../request/getAllPokemons';
 import scrollToTop from '../hooks/scrollToTop';
 import PokemonCard from '../PokemonCard/PokemonCard';
 import './home.scss';
@@ -15,23 +15,8 @@ const Home = (props) => {
   const [sortedByName, setSortedByName] = useState(false);
   const [sortedByType, setSortedByType] = useState(false);
 
-  const [showButton, setShowButton] = useState(false);
-
-  const getAllPokemons = async () => {
-    const response = await axios.get(loadPokemons);
-    const data = await response.data;
-    setLoadPokemons(data.next);
-    function createPokemonItem(result) {
-      result.forEach(async (pokemon) => {
-        const response = await axios.get(
-          `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
-        );
-        const data = await response.data;
-        setAllPokemons((currentList) => [...currentList, data]);
-      });
-    }
-    createPokemonItem(data.results);
-  };
+  const [height, setHeight] = useState(window.innerWidth);
+  const breakpoint = 480;
 
   //console.log(allPokemons);
 
@@ -75,34 +60,49 @@ const Home = (props) => {
     setSortedById(false);
     setSortedByType(false);
   };
+  /**
+   * This function is used to sort the tags by name
+   */
 
-  const handleSortTag = () => {
+  const handleSortType = () => {
     setSortedByType(true);
     setSortedById(false);
     setSortedByName(false);
   };
 
   useEffect(() => {
-    getAllPokemons();
-    window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 300) {
-        setShowButton(true);
-      } else {
-        setShowButton(false);
-      }
-    });
+    /* Fetching all the pokemons from the API and storing them in the state. */
+    getAllPokemons(loadPokemons, setLoadPokemons, setAllPokemons);
+
+    /**
+     * It sets the height of the element to the current scroll position of the window
+     */
+    const handleHeightWindow = () => setHeight(window.pageYOffset);
+    window.addEventListener('scroll', handleHeightWindow);
+    return () => {
+      window.removeEventListener('scroll', handleHeightWindow);
+    };
   }, []);
   return (
     <div>
       <div className="pokemon-filter">
-        <button className="button" onClick={() => handleSortName()}>
-          trier par nom
+        <button
+          className="button pokemon-filter-button"
+          onClick={() => handleSortName()}
+        >
+          Sort by Name
         </button>
-        <button className="button" onClick={() => handleSortId()}>
-          trier par id
+        <button
+          className="button pokemon-filter-button"
+          onClick={() => handleSortId()}
+        >
+          Sort by id
         </button>
-        <button className="button" onClick={() => handleSortTag()}>
-          trier par tag
+        <button
+          className="button pokemon-filter-button"
+          onClick={() => handleSortType()}
+        >
+          Sort By type
         </button>
       </div>
       {sortedById && sortById()}
@@ -121,14 +121,14 @@ const Home = (props) => {
         <button
           className="button button-load-more"
           onClick={() => {
-            getAllPokemons();
+            getAllPokemons(loadPokemons, setLoadPokemons, setAllPokemons);
           }}
         >
           Load more
         </button>
       </section>
 
-      {showButton && (
+      {breakpoint < height && (
         <button onClick={scrollToTop} className="button button-to-top">
           &#8679;
         </button>
