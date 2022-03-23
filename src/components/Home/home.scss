@@ -22,6 +22,10 @@
   &-filter {
     display: flex;
     justify-content: space-around;
+
+    &-button {
+      font-size: 1.5rem;
+    }
   }
   &-select {
     margin-left: 1rem;
