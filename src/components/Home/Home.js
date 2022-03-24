@@ -18,7 +18,7 @@ const Home = (props) => {
   const [height, setHeight] = useState(window.innerHeight);
   const breakpoint = 1000;
 
-  //console.log(allPokemons);
+  console.log(allPokemons);
 
   const sortById = () => {
     allPokemons.sort(function (a, b) {
@@ -40,10 +40,10 @@ const Home = (props) => {
 
   const sortByType = () => {
     allPokemons.sort(function (a, b) {
-      if (a.types[0].type.name < b.types[0].type.name) {
+      if (a.type < b.type) {
         return -1;
       }
-      if (a.types[0].type.name > b.types[0].type.name) {
+      if (a.type > b.type) {
         return 1;
       }
       return 0;
@@ -114,8 +114,8 @@ const Home = (props) => {
             key={index}
             id={pokemon.id}
             name={pokemon.name}
-            image={pokemon.sprites.other.dream_world.front_default}
-            type={pokemon.types[0].type.name}
+            image={pokemon.image}
+            type={pokemon.type}
           />
         ))}
         <button

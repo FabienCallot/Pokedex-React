@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import getOnePokemon from '../../request/getOnePokemon';
 import './pokemonDetails.scss';
+import type { TPokemon } from '../../request/getOnePokemon';
 
-type TPokemon = (number | string)[];
 type Name = string;
 const PokemonDetails = () => {
   const [pokemon, setPokemon] = useState<TPokemon>();
@@ -21,39 +21,38 @@ const PokemonDetails = () => {
   if (!pokemon) {
     return null;
   }
-
   //console.log(pokemon);
 
   return (
     <div className="pokemon-details">
       <div>
-        <h2>Détails de {pokemon[0]}</h2>
-        <img src={`${pokemon[1]}`} alt={`${pokemon[0]}`} />
+        <h2>Détails de {pokemon.name}</h2>
+        <img src={`${pokemon.image}`} alt={`${pokemon.name}`} />
       </div>
       <div className="pokemon-details--progress">
         <div className="pokemon-details--progress-stats">
-          <p>{pokemon[2]}</p>
-          <ProgressBar value={pokemon[3]} />
+          <p>{pokemon.name_stat1}</p>
+          <ProgressBar value={pokemon.stat1} />
         </div>
         <div className="pokemon-details--progress-stats">
-          <p>{pokemon[4]}</p>
-          <ProgressBar value={pokemon[5]} />
+          <p>{pokemon.name_stat2}</p>
+          <ProgressBar value={pokemon.stat2} />
         </div>
         <div className="pokemon-details--progress-stats">
-          <p>{pokemon[6]}</p>
-          <ProgressBar value={pokemon[7]} />
+          <p>{pokemon.name_stat3}</p>
+          <ProgressBar value={pokemon.stat3} />
         </div>
         <div className="pokemon-details--progress-stats">
-          <p>{pokemon[8]}</p>
-          <ProgressBar value={pokemon[9]} />
+          <p>{pokemon.name_stat4}</p>
+          <ProgressBar value={pokemon.stat4} />
         </div>
         <div className="pokemon-details--progress-stats">
-          <p>{pokemon[10]}</p>
-          <ProgressBar value={pokemon[11]} />
+          <p>{pokemon.name_stat5}</p>
+          <ProgressBar value={pokemon.stat5} />
         </div>
         <div className="pokemon-details--progress-stats">
-          <p>{pokemon[12]}</p>
-          <ProgressBar value={pokemon[13]} />
+          <p>{pokemon.name_stat6}</p>
+          <ProgressBar value={pokemon.stat6} />
         </div>
       </div>
     </div>
