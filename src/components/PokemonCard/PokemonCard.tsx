@@ -3,7 +3,14 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './pokemonCard.scss';
 
-const PokemonCard = ({ id, name, image, type }) => {
+export type Pokemon = {
+  id: number;
+  name: string;
+  image: string;
+  type: string;
+};
+
+const PokemonCard = ({ id, name, image, type }: Pokemon) => {
   const style = `pokemon-card ${type}`;
   return (
     <Link to={`/pokemon/${name}`} className={style}>

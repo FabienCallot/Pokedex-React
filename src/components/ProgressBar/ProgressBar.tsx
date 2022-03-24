@@ -1,7 +1,11 @@
 import React from 'react';
 import './progressBar.scss';
 
-const ProgressBar = ({ value }) => {
+type Props = {
+    value: number|string
+}
+
+const ProgressBar = ({ value }: Props) => {
     return (
         <div>
             <label htmlFor="bar"></label>
