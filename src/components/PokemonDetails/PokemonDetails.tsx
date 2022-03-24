@@ -7,6 +7,7 @@ import './pokemonDetails.scss';
 import type { TPokemon } from '../../request/getOnePokemon';
 
 type Name = string;
+
 const PokemonDetails = () => {
   const [pokemon, setPokemon] = useState<TPokemon>();
   const { name } = useParams<Name>();
@@ -21,7 +22,6 @@ const PokemonDetails = () => {
   if (!pokemon) {
     return null;
   }
-  //console.log(pokemon);
 
   return (
     <div className="pokemon-details">

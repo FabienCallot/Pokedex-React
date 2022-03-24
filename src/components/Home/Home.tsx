@@ -2,69 +2,43 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { getAllPokemons } from '../../request/getAllPokemons';
-import scrollToTop from '../hooks/scrollToTop';
+import scrollToTop from '../../hooks/scrollToTop';
 import PokemonCard from '../PokemonCard/PokemonCard';
+import type { Pokemon } from '../PokemonCard/PokemonCard';
+import { sortById, sortByName, sortByType } from '../../utils/sorting';
 import './home.scss';
 
-const Home = (props) => {
-  const [allPokemons, setAllPokemons] = useState([]);
-  const [loadPokemons, setLoadPokemons] = useState(
+const Home = () => {
+  const [allPokemons, setAllPokemons] = useState<Pokemon[]>([]);
+  const [loadPokemons, setLoadPokemons] = useState<string>(
     'https://pokeapi.co/api/v2/pokemon?limit=21'
   );
-  const [sortedById, setSortedById] = useState(false);
-  const [sortedByName, setSortedByName] = useState(false);
-  const [sortedByType, setSortedByType] = useState(false);
+  const [sortedById, setSortedById] = useState<boolean>(false);
+  const [sortedByName, setSortedByName] = useState<boolean>(false);
+  const [sortedByType, setSortedByType] = useState<boolean>(false);
 
+  //state for display or not the button scrollToTop
   const [height, setHeight] = useState(window.innerHeight);
   const breakpoint = 1000;
 
-  console.log(allPokemons);
+  //console.log(allPokemons);
 
-  const sortById = () => {
-    allPokemons.sort(function (a, b) {
-      return a.id - b.id;
-    });
-  };
-
-  const sortByName = () => {
-    allPokemons.sort(function (a, b) {
-      if (a.name < b.name) {
-        return -1;
-      }
-      if (a.name > b.name) {
-        return 1;
-      }
-      return 0;
-    });
-  };
-
-  const sortByType = () => {
-    allPokemons.sort(function (a, b) {
-      if (a.type < b.type) {
-        return -1;
-      }
-      if (a.type > b.type) {
-        return 1;
-      }
-      return 0;
-    });
-  };
-  const handleSortId = () => {
+  // if sorted by id :
+  const handleSortId = (): void => {
     setSortedById(true);
     setSortedByName(false);
     setSortedByType(false);
   };
 
-  const handleSortName = () => {
+  // if sorted by name:
+  const handleSortName = (): void => {
     setSortedByName(true);
     setSortedById(false);
     setSortedByType(false);
   };
-  /**
-   * This function is used to sort the tags by name
-   */
 
-  const handleSortType = () => {
+  // if sorted by type :
+  const handleSortType = (): void => {
     setSortedByType(true);
     setSortedById(false);
     setSortedByName(false);
@@ -77,7 +51,7 @@ const Home = (props) => {
     /**
      * It sets the height of the element to the current scroll position of the window
      */
-    const handleHeightWindow = () => setHeight(window.pageYOffset);
+    const handleHeightWindow = (): void => setHeight(window.pageYOffset);
     window.addEventListener('scroll', handleHeightWindow);
     return () => {
       window.removeEventListener('scroll', handleHeightWindow);
@@ -105,9 +79,9 @@ const Home = (props) => {
           Sort By type
         </button>
       </div>
-      {sortedById && sortById()}
-      {sortedByName && sortByName()}
-      {sortedByType && sortByType()}
+      {sortedById && sortById(allPokemons)}
+      {sortedByName && sortByName(allPokemons)}
+      {sortedByType && sortByType(allPokemons)}
       <section className="pokemon-container">
         {allPokemons.map((pokemon, index) => (
           <PokemonCard
