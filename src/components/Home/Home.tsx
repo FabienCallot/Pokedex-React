@@ -11,7 +11,7 @@ import './home.scss';
 const Home = () => {
   const [allPokemons, setAllPokemons] = useState<Pokemon[]>([]);
   const [loadPokemons, setLoadPokemons] = useState<string>(
-    'https://pokeapi.co/api/v2/pokemon?limit=21'
+    'https://pokeapi.co/api/v2/pokemon?limit=12'
   );
   const [sortedById, setSortedById] = useState<boolean>(false);
   const [sortedByName, setSortedByName] = useState<boolean>(false);

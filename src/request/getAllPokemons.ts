@@ -1,11 +1,12 @@
 import apiAxios from './index';
 import type { Pokemon } from '../components/PokemonCard/PokemonCard';
-type Result = [string];
+import { Dispatch } from 'react';
 
+type Result = [string];
 export async function getAllPokemons(
   load: string,
-  setLoad: any,
-  setItems: any
+  setLoad: Dispatch<string>,
+  setItems: Dispatch<any>
 ) {
   const response = await apiAxios.get(load);
   const data = await response.data;
@@ -15,13 +16,16 @@ export async function getAllPokemons(
     result.forEach(async (pokemon: any): Promise<Pokemon> => {
       const response = await apiAxios.get(`/${pokemon.name}`);
       const data = await response.data;
-      const dataFiltered = {
+
+      const dataFiltered: Pokemon = {
         id: data.id,
         name: data.name,
         image: data.sprites.other.dream_world.front_default,
         type: data.types[0].type.name,
       };
-      setItems((currentList: any) => [...currentList, dataFiltered]);
+
+      setItems((currentList: Pokemon[]) => [...currentList, dataFiltered]);
+
       return dataFiltered;
     });
   }
