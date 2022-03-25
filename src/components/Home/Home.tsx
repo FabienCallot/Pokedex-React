@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { Dispatch } from 'react';
+import React from 'react';
 import { useEffect, useState } from 'react';
 import { getAllPokemons } from '../../request/getAllPokemons';
 import scrollToTop from '../../hooks/scrollToTop';

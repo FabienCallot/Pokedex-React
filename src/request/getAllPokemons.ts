@@ -1,6 +1,6 @@
 import apiAxios from './index';
 import type { Pokemon } from '../components/PokemonCard/PokemonCard';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch } from 'react';
 
 type Result = [
   {
