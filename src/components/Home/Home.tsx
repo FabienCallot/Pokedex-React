@@ -2,7 +2,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { getAllPokemons } from '../../request/getAllPokemons';
-import { currentHeight, scrollToTop } from '../../hooks/scrollToTop';
 import PokemonCard from '../PokemonCard/PokemonCard';
 import type { Pokemon } from '../PokemonCard/PokemonCard';
 import { sortById, sortByName, sortByType } from '../../utils/sorting';
