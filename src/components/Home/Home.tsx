@@ -79,15 +79,15 @@ const Home = () => {
             type={pokemon.type}
           />
         ))}
-        <button
-          className="button button-load-more"
-          onClick={() => {
-            getAllPokemons(loadPokemons, setLoadPokemons, setAllPokemons);
-          }}
-        >
-          Load more
-        </button>
       </section>
+      <button
+        className="button button-load-more"
+        onClick={() => {
+          getAllPokemons(loadPokemons, setLoadPokemons, setAllPokemons);
+        }}
+      >
+        Load more
+      </button>
     </div>
   );
 };

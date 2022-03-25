@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
-import getPokemonTypes, { Type } from '../../request/getPokemonTypes';
+import getPokemonTypes from '../../request/getPokemonTypes';
 import './pokemonTypes.scss';
 
 const PokemonTypes = () => {
-  const [types, setTypes] = useState<any>([]);
+  const [types, setTypes] = useState<string[]>([]);
   const listTypes = types.map((type: any) => (
     <button
       key={type}
