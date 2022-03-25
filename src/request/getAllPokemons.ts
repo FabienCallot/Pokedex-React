@@ -1,8 +1,17 @@
 import apiAxios from './index';
 import type { Pokemon } from '../components/PokemonCard/PokemonCard';
-import { Dispatch } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
-type Result = [string];
+type Result = [
+  {
+    name: string;
+    url: string;
+  }
+];
+type Data = {
+  name: string;
+  url: string;
+};
 export async function getAllPokemons(
   load: string,
   setLoad: Dispatch<string>,
@@ -13,7 +22,7 @@ export async function getAllPokemons(
   setLoad(data.next);
 
   function createPokemonItem(result: Result) {
-    result.forEach(async (pokemon: any): Promise<Pokemon> => {
+    result.forEach(async (pokemon: Data): Promise<Pokemon> => {
       const response = await apiAxios.get(`/${pokemon.name}`);
       const data = await response.data;
 
