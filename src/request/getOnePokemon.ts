@@ -1,5 +1,4 @@
-import axios from 'axios';
-//TODO: faire plutot un objet explicite
+import apiAxios from './index';
 export type TPokemon = {
   name: string;
   image: string;
@@ -17,7 +16,7 @@ export type TPokemon = {
   stat6: number;
 };
 const getOnePokemon = async (name: string | undefined): Promise<TPokemon> => {
-  const result = await axios.get(`https://pokeapi.co/api/v2/pokemon/${name}`);
+  const result = await apiAxios.get(`/pokemon/${name}`);
   const transformedPokemon: TPokemon = {
     name: result.data.name,
     image: `${result.data.sprites.other.dream_world.front_default}`,

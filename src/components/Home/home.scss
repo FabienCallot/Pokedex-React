@@ -1,8 +1,8 @@
 @use 'src/styles/vars';
 
 .button {
-  margin-left: auto;
-  margin-right: auto;
+  display: block;
+  margin: auto;
   background-color: vars.$colorBgCard;
   border: solid 1px #454545;
   border-radius: 1rem;
@@ -21,10 +21,12 @@
 .pokemon {
   &-filter {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    flex-wrap: wrap;
 
     &-button {
       font-size: 1.5rem;
+      margin: 0.3rem 0;
     }
   }
   &-select {

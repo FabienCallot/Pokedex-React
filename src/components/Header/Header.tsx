@@ -14,12 +14,12 @@ const Header = () => {
         Pokédex
       </NavLink>
       <NavLink
-        to="/type"
+        to="/types"
         className={(isActive) =>
           'header-liste-type' + (!isActive ? ' unselected' : '')
         }
       >
-        Liste types
+        List types
       </NavLink>
     </div>
   );
