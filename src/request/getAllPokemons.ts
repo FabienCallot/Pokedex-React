@@ -23,7 +23,7 @@ export async function getAllPokemons(
 
   function createPokemonItem(result: Result) {
     result.forEach(async (pokemon: Data): Promise<Pokemon> => {
-      const response = await apiAxios.get(`/${pokemon.name}`);
+      const response = await apiAxios.get(`/pokemon/${pokemon.name}`);
       const data = await response.data;
 
       const dataFiltered: Pokemon = {

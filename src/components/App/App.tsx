@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Header from '../Header/Header';
 import Home from '../Home/Home';
 import PokemonDetails from '../PokemonDetails/PokemonDetails';
+import PokemonTypes from '../Types/PokemonTypes';
 import './app.scss';
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/pokemon/:name" element={<PokemonDetails />} />
+        <Route path="/types" element={<PokemonTypes />} />
       </Routes>
     </div>
   );
