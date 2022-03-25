@@ -2,7 +2,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { getAllPokemons } from '../../request/getAllPokemons';
-import scrollToTop from '../../hooks/scrollToTop';
+import { currentHeight, scrollToTop } from '../../hooks/scrollToTop';
 import PokemonCard from '../PokemonCard/PokemonCard';
 import type { Pokemon } from '../PokemonCard/PokemonCard';
 import { sortById, sortByName, sortByType } from '../../utils/sorting';
@@ -16,10 +16,6 @@ const Home = () => {
   const [sortedById, setSortedById] = useState<boolean>(false);
   const [sortedByName, setSortedByName] = useState<boolean>(false);
   const [sortedByType, setSortedByType] = useState<boolean>(false);
-
-  //state for display or not the button scrollToTop
-  const [height, setHeight] = useState(window.innerHeight);
-  const breakpoint = 1000;
 
   //console.log(allPokemons);
 
@@ -47,15 +43,6 @@ const Home = () => {
   useEffect(() => {
     /* Fetching all the pokemons from the API and storing them in the state. */
     getAllPokemons(loadPokemons, setLoadPokemons, setAllPokemons);
-
-    /**
-     * It sets the height of the element to the current scroll position of the window
-     */
-    const handleHeightWindow = (): void => setHeight(window.pageYOffset);
-    window.addEventListener('scroll', handleHeightWindow);
-    return () => {
-      window.removeEventListener('scroll', handleHeightWindow);
-    };
   }, []);
   return (
     <div>
@@ -101,12 +88,6 @@ const Home = () => {
           Load more
         </button>
       </section>
-
-      {breakpoint < height && (
-        <button onClick={scrollToTop} className="button button-to-top">
-          &#8679;
-        </button>
-      )}
     </div>
   );
 };
