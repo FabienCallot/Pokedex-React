@@ -15,5 +15,4 @@ export const currentHeight = (setitem: Dispatch<number>): void => {
   const handleHeightWindow = (): void => setitem(window.pageYOffset);
   window.addEventListener('scroll', handleHeightWindow);
   return;
-  //window.removeEventListener('scroll', handleHeightWindow);
 };

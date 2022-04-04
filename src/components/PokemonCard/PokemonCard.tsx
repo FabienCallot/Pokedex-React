@@ -26,11 +26,4 @@ const PokemonCard = ({ id, name, image, type }: Pokemon) => {
   );
 };
 
-PokemonCard.propTypes = {
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-};
-
 export default React.memo(PokemonCard);

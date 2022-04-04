@@ -14,4 +14,4 @@ const Button = ({ clickEvent, text, className }: ButtonProps) => {
   );
 };
 
-export default Button;
+export default React.memo(Button);
