@@ -11,7 +11,6 @@ function App() {
   //state for display or not the button scrollToTop
   const intFrameHeight: number = window.innerHeight;
   const [height, setHeight] = useState<number>(intFrameHeight);
-  console.log(height);
 
   // for the 4k monitor, need hight breakpoint
   let breakpoint: number = 850;
