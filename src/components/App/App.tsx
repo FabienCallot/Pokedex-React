@@ -4,14 +4,20 @@ import { currentHeight, scrollToTop } from '../../hooks/scrollToTop';
 import Header from '../Header/Header';
 import Home from '../Home/Home';
 import PokemonDetails from '../PokemonDetails/PokemonDetails';
-import PokemonTypes from '../Types/PokemonTypes';
+import PokemonTypes from '../PokemonTypes/PokemonTypes';
 import './app.scss';
 
 function App() {
   //state for display or not the button scrollToTop
-  const [height, setHeight] = useState(window.innerHeight);
-  const breakpoint = 850;
+  const intFrameHeight: number = window.innerHeight;
+  const [height, setHeight] = useState<number>(intFrameHeight);
+  console.log(height);
 
+  // for the 4k monitor, need hight breakpoint
+  let breakpoint: number = 850;
+  if (intFrameHeight > 850) {
+    breakpoint = 1330;
+  }
   useEffect(() => {
     currentHeight(setHeight);
   }, []);
