@@ -3,8 +3,9 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { getAllPokemons } from '../../request/getAllPokemons';
 import PokemonCard from '../PokemonCard/PokemonCard';
-import type { Pokemon } from '../PokemonCard/PokemonCard';
+import Button from '../Button/Button';
 import { sortById, sortByName, sortByType } from '../../utils/sorting';
+import type { Pokemon } from '../PokemonCard/PokemonCard';
 import './home.scss';
 
 const Home = () => {
@@ -46,24 +47,27 @@ const Home = () => {
   return (
     <div>
       <div className="pokemon-filter">
-        <button
-          className="button pokemon-filter-button"
-          onClick={() => handleSortName()}
-        >
-          Sort by Name
-        </button>
-        <button
-          className="button pokemon-filter-button"
-          onClick={() => handleSortId()}
-        >
-          Sort by id
-        </button>
-        <button
-          className="button pokemon-filter-button"
-          onClick={() => handleSortType()}
-        >
-          Sort By type
-        </button>
+        <Button
+          clickEvent={() => {
+            handleSortName();
+          }}
+          className="pokemon-filter-button"
+          text="Sort by Name"
+        />
+        <Button
+          clickEvent={() => {
+            handleSortId();
+          }}
+          className="pokemon-filter-button"
+          text="Sort by Id"
+        />
+        <Button
+          clickEvent={() => {
+            handleSortType();
+          }}
+          className="pokemon-filter-button"
+          text="Sort by Types"
+        />
       </div>
       {sortedById && sortById(allPokemons)}
       {sortedByName && sortByName(allPokemons)}
@@ -79,14 +83,13 @@ const Home = () => {
           />
         ))}
       </section>
-      <button
-        className="button button-load-more"
-        onClick={() => {
+      <Button
+        clickEvent={() => {
           getAllPokemons(loadPokemons, setLoadPokemons, setAllPokemons);
         }}
-      >
-        Load more
-      </button>
+        className=" button-load-more"
+        text="Load More"
+      />
     </div>
   );
 };
