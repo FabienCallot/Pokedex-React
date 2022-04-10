@@ -12,6 +12,7 @@ type Data = {
   name: string;
   url: string;
 };
+// TODO: manage any type
 export async function getAllPokemons(
   load: string,
   setLoad: Dispatch<string>,
@@ -25,6 +26,7 @@ export async function getAllPokemons(
     result.forEach(async (pokemon: Data): Promise<Pokemon> => {
       const response = await apiAxios.get(`/pokemon/${pokemon.name}`);
       const data = await response.data;
+      //console.log(data);
 
       const dataFiltered: Pokemon = {
         id: data.id,
