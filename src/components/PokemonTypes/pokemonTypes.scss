@@ -1,12 +1,22 @@
-@use 'src/styles/vars';
-
+@use "src/styles/vars";
+.type {
+  width: 100%;
+}
 .types-container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-around;
 
   & .button {
-    display: block;
-    width: 50%;
-    margin: 1rem auto;
+    width: 30%;
+    margin: 0.5rem;
+    font-size: 1rem;
   }
+}
+
+.types-pokemons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 1rem;
 }

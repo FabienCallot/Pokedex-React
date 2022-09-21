@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
-import { getPokemonsByTypes } from '../../request/getPokemonsByType';
-import getPokemonTypes from '../../request/getPokemonTypes';
-import Button from '../Button/Button';
-import PokemonCard, { Pokemon } from '../PokemonCard/PokemonCard';
-import './pokemonTypes.scss';
+import React, { useEffect, useState } from "react";
+import { getPokemonsByTypes } from "../../request/getPokemonsByType";
+import getPokemonTypes from "../../request/getPokemonTypes";
+import Button from "../Button/Button";
+import PokemonCard, { Pokemon } from "../PokemonCard/PokemonCard";
+import "./pokemonTypes.scss";
 
 // TODO: Code refacto and manage the sencond type
 const PokemonTypes = () => {
@@ -23,7 +23,7 @@ const PokemonTypes = () => {
   return (
     <section className="types">
       <div className="types-container">
-        {pokemonsTypes.map((pokemonType: any) => (
+        {pokemonsTypes.map((pokemonType: string) => (
           <Button
             key={pokemonType}
             clickEvent={async () => {
