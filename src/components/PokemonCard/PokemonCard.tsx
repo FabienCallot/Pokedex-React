@@ -1,7 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import './pokemonCard.scss';
+import React from "react";
+import { Link } from "react-router-dom";
+import pokeball from "../../docs/img/pokeball.png";
+import PropTypes from "prop-types";
+import "./pokemonCard.scss";
 
 export type Pokemon = {
   id: number;
@@ -14,7 +15,7 @@ const PokemonCard = ({ id, name, image, type }: Pokemon) => {
   const style = `pokemon-card ${type}`;
   return (
     <Link to={`/pokemon/${name}`} className={style}>
-      <img src={image} alt={name} />
+      <img src={image ? image : pokeball} alt={name} />
       <div className="pokemon-detail">
         <div className="pokemon-detail-first">
           <p>#{id}</p>
