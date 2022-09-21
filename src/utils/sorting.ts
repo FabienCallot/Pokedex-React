@@ -1,4 +1,4 @@
-import { Pokemon } from '../components/PokemonCard/PokemonCard';
+import { Pokemon } from "../components/PokemonCard/PokemonCard";
 
 /**
  * Sort all the pokemons by their id

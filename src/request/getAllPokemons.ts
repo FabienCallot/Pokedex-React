@@ -1,6 +1,6 @@
-import apiAxios from './index';
-import type { Pokemon } from '../components/PokemonCard/PokemonCard';
-import { Dispatch } from 'react';
+import apiAxios from "./index";
+import type { Pokemon } from "../components/PokemonCard/PokemonCard";
+import { Dispatch } from "react";
 
 type Result = [
   {
@@ -12,6 +12,7 @@ type Data = {
   name: string;
   url: string;
 };
+// TODO: manage any type
 export async function getAllPokemons(
   load: string,
   setLoad: Dispatch<string>,
@@ -21,10 +22,11 @@ export async function getAllPokemons(
   const data = await response.data;
   setLoad(data.next);
 
-  function createPokemonItem(result: Result) {
+  async function createPokemonItem(result: Result) {
     result.forEach(async (pokemon: Data): Promise<Pokemon> => {
       const response = await apiAxios.get(`/pokemon/${pokemon.name}`);
       const data = await response.data;
+      //console.log(data);
 
       const dataFiltered: Pokemon = {
         id: data.id,
@@ -39,5 +41,7 @@ export async function getAllPokemons(
     });
   }
 
-  createPokemonItem(data.results);
+  const lol = await createPokemonItem(data.results);
+
+  return lol;
 }
