@@ -1,10 +1,10 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import ProgressBar from '../ProgressBar/ProgressBar';
-import getOnePokemon from '../../request/getOnePokemon';
-import './pokemonDetails.scss';
-import type { TPokemon } from '../../request/getOnePokemon';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import ProgressBar from "../ProgressBar/ProgressBar";
+import getOnePokemon from "../../request/getOnePokemon";
+import pokeball from "../../docs/img/pokeball.png";
+import "./pokemonDetails.scss";
+import type { TPokemon } from "../../request/getOnePokemon";
 
 type Name = string;
 
@@ -17,8 +17,7 @@ const PokemonDetails = () => {
       const myNewPokemon = await getOnePokemon(name);
       setPokemon(myNewPokemon);
     })();
-  }, []);
-
+  }, [name]);
   if (!pokemon) {
     return null;
   }
@@ -27,7 +26,11 @@ const PokemonDetails = () => {
     <div className="pokemon-details">
       <div>
         <h2>Détails de {pokemon.name}</h2>
-        <img src={`${pokemon.image}`} alt={`${pokemon.name}`} />
+
+        <img
+          src={pokemon.image !== "null" ? pokemon.image : pokeball}
+          alt={`${pokemon.name}`}
+        />
       </div>
       <div className="pokemon-details--progress">
         <div className="pokemon-details--progress-stats">

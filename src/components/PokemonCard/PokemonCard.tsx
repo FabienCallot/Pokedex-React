@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import pokeball from "../../docs/img/pokeball.png";
-import PropTypes from "prop-types";
 import "./pokemonCard.scss";
 
 export type Pokemon = {
