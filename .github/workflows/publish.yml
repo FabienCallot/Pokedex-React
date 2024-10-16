@@ -1,0 +1,56 @@
+name: pipeline
+
+on:
+  push:
+    branches:
+      - "main"
+      - "develop"
+
+jobs:
+  deploy:
+    name: Build and Push Images to Docker Hub
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Set Up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Docker Login
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Read Version for Production
+        id: version
+        if: github.ref == 'refs/heads/main'
+        run: |
+          VERSION=$(cat VERSION)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+        shell: bash
+
+      - name: Build and Push Production Image
+        if: github.ref == 'refs/heads/main'
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: Dockerfile.prod
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: |
+            fabcallot/pokedex:latest
+            fabcallot/pokedex:${{ env.VERSION }}
+
+      - name: Build and Push Development Image
+        if: github.ref == 'refs/heads/develop'
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: Dockerfile.dev
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: fabcallot/pokedex:dev

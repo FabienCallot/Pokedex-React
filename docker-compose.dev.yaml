@@ -1,0 +1,14 @@
+services:
+  app:
+    container_name: pokedex-dev
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    image: fabcallot/pokedex:dev
+    ports:
+      - "5174:5174"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
