@@ -1,6 +1,6 @@
 services:
   app:
-    container_name: fab-call-pokedex-dev
+    container_name: pokedex-dev
     build:
       context: .
       dockerfile: Dockerfile.dev

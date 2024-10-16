@@ -3,7 +3,7 @@ services:
     image: fabcallot/pokedex:latest
     build:
       dockerfile: Dockerfile.prod
-    container_name: fab-call-pokedex-c
+    container_name: pokedex
     ports:
       - "9091:80"
     environment:

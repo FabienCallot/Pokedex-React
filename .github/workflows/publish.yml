@@ -42,8 +42,8 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
-            fabcallot/fab-call-pokedex:latest
-            fabcallot/fab-call-pokedex:${{ env.VERSION }}
+            fabcallot/pokedex:latest
+            fabcallot/pokedex:${{ env.VERSION }}
 
       - name: Build and Push Development Image
         if: github.ref == 'refs/heads/develop'
@@ -53,4 +53,4 @@ jobs:
           file: Dockerfile.dev
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: fabcallot/fab-call-pokedex:dev
+          tags: fabcallot/pokedex:dev
