@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 5174
 
 # Démarrer l'application en mode développement
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "start"]
