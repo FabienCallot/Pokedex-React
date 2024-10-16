@@ -1,0 +1,11 @@
+services:
+  client:
+    image: fabcallot/pokedex:latest
+    build:
+      dockerfile: Dockerfile.prod
+    container_name: fab-call-pokedex-c
+    ports:
+      - "9091:80"
+    environment:
+      - NODE_ENV=production
+

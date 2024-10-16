@@ -1,0 +1,30 @@
+# Utilisation de l'image Node.js basée sur Alpine Linux (multi-architecture)
+FROM node:alpine AS builder
+
+# Configuration du répertoire de travail
+WORKDIR /app
+
+# Installation des dépendances
+COPY ./package*.json ./
+RUN npm install --frozen-lockfile
+
+# Copier le reste des fichiers dans le conteneur
+COPY . .
+
+# Construction de l'application
+RUN npm run build
+
+# Utilisation de la dernière image Nginx (multi-architecture)
+FROM nginx:alpine
+
+# Copier les assets construits depuis l'étape précédente
+COPY --from=builder /app/build /usr/share/nginx/html
+
+# Copier la configuration Nginx
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Exposer le port 9091
+EXPOSE 9091
+
+# Commande par défaut pour démarrer Nginx
+CMD ["nginx", "-g", "daemon off;"]
